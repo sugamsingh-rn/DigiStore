@@ -1,0 +1,72 @@
+
+
+
+
+
+
+CREATE TABLE `product` (
+  `product_id` varchar(100) NOT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `product_price` float DEFAULT NULL,
+  `product_image` varchar(100) DEFAULT NULL,
+  `category_name` varchar(50) DEFAULT NULL,
+  `product_description` varchar(1000) DEFAULT 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad',
+  PRIMARY KEY (`product_id`));
+
+
+CREATE TABLE `user_detail` (
+  `email` varchar(100) NOT NULL,
+  `username` char(100) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`email`));
+
+
+CREATE TABLE `cart` (
+  `product_id` varchar(50) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `user_email` varchar(100) DEFAULT 'NULL',
+  KEY `product_id` (`product_id`),
+  KEY `user_email` (`user_email`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_email`) REFERENCES `user_detail` (`email`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+  CREATE TABLE `image_and_description` (
+  `product_id` varchar(50) DEFAULT NULL,
+  `image_name` varchar(50) DEFAULT NULL,
+  `description` varchar(1000) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad',
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `image_and_description_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+
+  CREATE TABLE `order_detail` (
+  `username` varchar(100) DEFAULT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `total_price` float DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `order_date` date DEFAULT NULL);
+
+
+CREATE TABLE `admin_login` (
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`username`));
+
+
+  CREATE TABLE `download_verification` (
+  `user_email` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `file_name` varchar(50) DEFAULT NULL,
+  `link_id` varchar(50) DEFAULT NULL);
+
+
+insert into admin_login values('','');
+
+
+insert into user_detail(email,password,username) values('@gmail.com','','');
+
+
+
+
+
